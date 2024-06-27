@@ -33,7 +33,7 @@ pipeline {
       steps {
         script {
           kubernetesDeploy(configs: "deployment.yaml", 
-                                         "service.yaml")
+                                         "service.yaml","05.yaml")
         }
       }
     }
