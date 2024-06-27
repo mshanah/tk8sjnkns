@@ -3,7 +3,8 @@ pipeline {
     dockerimagename = "1771985/react-app"
     dockerImage = ""
   }
-  agent any
+  agent {
+    kubernetes {
   stages {
     stage('Checkout Source') {
       steps {
@@ -38,4 +39,6 @@ pipeline {
       }
     }
   }
+}
+}
 }
