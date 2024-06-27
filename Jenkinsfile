@@ -5,6 +5,8 @@ pipeline {
   }
   agent {
     kubernetes {
+    }
+  }
   stages {
     stage('Checkout Source') {
       steps {
@@ -39,6 +41,4 @@ pipeline {
       }
     }
   }
-}
-}
 }
