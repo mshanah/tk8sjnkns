@@ -12,7 +12,7 @@ pipeline {
     }
     stage('Build image') {
       steps{
-        script {
+        container('docker') {
           sh 'docker build -t 1771985/react-app .'
         }
       }
