@@ -11,11 +11,11 @@ pipeline {
         spec:
           containers:
           - name: kubectl
-              image: bitnami/kubectl
-              command:
-              - "sleep"
-              - "240"
-              tty: true
+            image: bitnami/kubectl
+            command:
+            - "sleep"
+            - "240"
+            tty: true
           - name: docker
             image: docker:latest
             command:
