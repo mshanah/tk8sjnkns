@@ -10,6 +10,12 @@ pipeline {
         kind: Pod
         spec:
           containers:
+          - name: kubectl
+              image: bitnami/kubectl
+              command:
+              - "sleep"
+              - "240"
+              tty: true
           - name: docker
             image: docker:latest
             command:
