@@ -38,18 +38,22 @@ pipeline {
         }
       }
     }
-    stage('Pushing Image') {
-      environment {
-          registryCredential = 'dhc'
-           }
-      steps{
-        script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-            dockerImage.push("latest")
+    stage('Login-Docker') {
+      steps {
+        container('docker') {
+          withCredentials([usernamePassword(credentialsId: 'dhc', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          sh 'docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}'
           }
-        }
       }
     }
+    }
+    stage('Push-Images-Docker-to-DockerHub') {
+      steps {
+        container('docker') {
+          sh 'docker push 1771985/react-app:latest'
+      }
+    }
+     }
     stage('Deploying React.js container to Kubernetes') {
       steps {
         script {
